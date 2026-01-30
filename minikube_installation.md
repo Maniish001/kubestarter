@@ -155,41 +155,23 @@ That's it! You've successfully installed Minikube on Ubuntu, and you can now sta
 3) ./install_kube.sh          [run this script]
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #!/bin/bash
-set -e  # Exit on any error
+set -e
 
-echo "Starting Minikube/Docker/Kubectl installation..."
-
-# Step 1: Update packages
 sudo apt update
 
-# Step 2: Install basic packages
-sudo apt install -y curl wget apt-transport-https ca-certificates
+sudo apt install -y curl wget apt-transport-https
 
-# Step 3: Install Docker
-sudo apt install -y docker.io
-sudo systemctl enable --now docker
-sudo usermod -aG docker $USER
-echo "Docker installed. Run 'newgrp docker' or logout/login NOW, then rerun script from Step 4."
-echo "For now, continuing..."
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
-# Step 4: Install Minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 chmod +x minikube
 sudo mv minikube /usr/local/bin/
-rm -f minikube-linux-amd64  # Cleanup
 
-# Step 5: Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
-rm -f kubectl  # Cleanup
 
-# Refresh PATH and verify
-export PATH=$PATH:/usr/local/bin
-minikube version
-kubectl version --client
-
-echo "Installation completed! Logout/login for full docker access, then 'minikube start --driver=docker'."
+echo "installation completed"
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Install docker seprately or use Docker desktop (setting>resources>wsl integration>enable ubuntu)
 Logout/login after docker group addition for permissions to take effect.
