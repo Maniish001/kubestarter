@@ -149,11 +149,15 @@ minikube delete
 
 That's it! You've successfully installed Minikube on Ubuntu, and you can now start deploying Kubernetes applications for development and testing.
 ```
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 1) vim install_kube.sh       [copy paste this inside this file]
+ 2) chmod 777 install_kube.sh [give permission]
+3) ./install_kube.sh          [run this script]
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 #!/bin/bash
 
 # Step 2: Install basic packages - curl (downloads files), wget (retrieves files), apt-transport-https (HTTPS repo support)
+sudo apt update
 sudo apt install -y curl wget apt-transport-https
 
 # Step 3: Install Docker runtime - docker.io (container engine), enable/start service, add user to docker group (non-root docker access)
@@ -170,5 +174,7 @@ sudo mv minikube /usr/local/bin/
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
+
+echo "Docker Minikube and Kubectl installation completed.."
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Logout/login after docker group addition for permissions to take effect.
