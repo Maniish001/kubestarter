@@ -158,11 +158,12 @@ That's it! You've successfully installed Minikube on Ubuntu, and you can now sta
 set -e
 
 sudo apt update
-
 sudo apt install -y curl wget apt-transport-https
 
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
 
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 chmod +x minikube
 sudo mv minikube /usr/local/bin/
 
@@ -173,5 +174,6 @@ sudo mv kubectl /usr/local/bin/
 echo "installation completed"
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Install docker seprately or use Docker desktop (setting>resources>wsl integration>enable ubuntu)
+4) sudo usermod -aG docker $USER && newgrp docker
+you can Install docker seprately or use Docker desktop (setting>resources>wsl integration>enable ubuntu)
 Logout/login after docker group addition for permissions to take effect.
