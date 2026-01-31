@@ -172,8 +172,8 @@ chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
 echo "installation completed"
-
+echo "run 'sudo usermod -aG docker $USER && newgrp docker' and logout and log in"
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 4) sudo usermod -aG docker $USER && newgrp docker
-you can Install docker seprately or use Docker desktop (setting>resources>wsl integration>enable ubuntu)
+you can use Docker desktop (setting>resources>wsl integration>enable ubuntu)
 Logout/login after docker group addition for permissions to take effect.
